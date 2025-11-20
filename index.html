@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 直接当 favicon 用 -->
-    <!-- 标准 favicon -->
     <link rel="icon" href="./demo.ico" type="image/x-icon">
     <title>SenseHiso AI - 人工智能前沿技术解决方案</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* --- 基础设置 --- */
         * {
             margin: 0;
             padding: 0;
@@ -39,7 +38,7 @@
             padding: 0 2rem;
         }
 
-        /* 导航栏 */
+        /* --- 导航栏 --- */
         .navbar {
             position: fixed;
             top: 0;
@@ -55,7 +54,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 1.2rem 0;
         }
 
         .logo {
@@ -103,21 +102,6 @@
             position: relative;
         }
 
-        .logo-text::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transition: width 0.3s ease;
-        }
-
-        .logo:hover .logo-text::after {
-            width: 100%;
-        }
-
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -130,30 +114,29 @@
             font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* 图标与文字间距 */
+        }
+
+        .nav-links a i {
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
 
         .nav-links a:hover {
             color: var(--primary);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transition: width 0.3s ease;
+        .nav-links a:hover i {
+            opacity: 1;
+            transform: scale(1.1);
+            transition: transform 0.2s;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* 英雄区域 */
+        /* --- 英雄区域 --- */
         .hero {
-            min-height: 100vh;
+            min-height: 90vh; /* 稍微调小高度 */
             display: flex;
             align-items: center;
             padding-top: 6rem;
@@ -212,30 +195,6 @@
             position: relative;
         }
 
-        .btn-icon::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.4);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease;
-        }
-
-        .btn:hover .btn-icon::before {
-            width: 100%;
-            height: 100%;
-            animation: ripple 0.6s ease-out;
-        }
-
-        @keyframes ripple {
-            0% { width: 0; height: 0; opacity: 0.5; }
-            100% { width: 200%; height: 200%; opacity: 0; }
-        }
-
         .hero-image {
             position: relative;
         }
@@ -263,41 +222,27 @@
             box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
         }
 
-        .hexagon::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.4));
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
         .hexagon:hover {
             transform: scale(1.1) rotate(0deg) translateY(-5px);
             box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
         }
 
-        .hexagon:nth-child(2) {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .hexagon:nth-child(5) {
-            animation: float 4s ease-in-out infinite 0.5s;
-        }
+        .hexagon:nth-child(2) { animation: float 3s ease-in-out infinite; }
+        .hexagon:nth-child(5) { animation: float 4s ease-in-out infinite 0.5s; }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
 
-        /* 关于我们 */
-        .about {
+        /* --- 通用 Section 样式 --- */
+        .section-padding {
             padding: 8rem 0;
-            background: white;
         }
+        
+        .about { background: white; }
+        .solutions { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); }
+        .team { background: white; }
 
         .section-title {
             text-align: center;
@@ -331,6 +276,7 @@
             margin: 0 auto;
         }
 
+        /* --- 关于我们 Features --- */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -347,25 +293,9 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
         .feature-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
         }
 
         .feature-icon {
@@ -379,21 +309,7 @@
             color: white;
             font-size: 2rem;
             margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
             box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
-        }
-
-        .feature-icon::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.4));
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
         }
 
         .feature-card h3 {
@@ -402,21 +318,15 @@
             color: var(--dark);
         }
 
-        .feature-card p {
-            color: var(--gray);
-        }
+        .feature-card p { color: var(--gray); }
 
-        /* 解决方案 */
-        .solutions {
-            padding: 8rem 0;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-        }
-
+        /* --- 解决方案 --- */
         .solution-tabs {
             display: flex;
             justify-content: center;
             gap: 1rem;
             margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
 
         .tab-btn {
@@ -428,6 +338,13 @@
             font-weight: 600;
             transition: all 0.3s ease;
             color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn i {
+            font-size: 1.1rem;
         }
 
         .tab-btn.active {
@@ -435,6 +352,11 @@
             background: var(--primary);
             border-color: var(--primary);
             box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .tab-btn:hover:not(.active) {
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         .solution-content {
@@ -463,21 +385,14 @@
             animation: fadeIn 0.5s ease;
         }
 
-        .solution-item.active {
-            display: block;
-        }
+        .solution-item.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 团队 */
-        .team {
-            padding: 8rem 0;
-            background: white;
-        }
-
+        /* --- 团队 --- */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -487,12 +402,9 @@
         .team-member {
             text-align: center;
             transition: all 0.3s ease;
-            position: relative;
         }
 
-        .team-member:hover {
-            transform: translateY(-10px);
-        }
+        .team-member:hover { transform: translateY(-10px); }
 
         .member-avatar {
             width: 150px;
@@ -505,27 +417,11 @@
             justify-content: center;
             color: white;
             font-size: 3rem;
-            position: relative;
-            overflow: hidden;
             box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
             transition: all 0.3s ease;
         }
 
-        .member-avatar::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.4));
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
-        .team-member:hover .member-avatar {
-            transform: scale(1.1);
-        }
+        .team-member:hover .member-avatar { transform: scale(1.1); }
 
         .team-member h3 {
             font-size: 1.3rem;
@@ -533,10 +429,7 @@
             color: var(--dark);
         }
 
-        .team-member p {
-            color: var(--gray);
-            font-weight: 500;
-        }
+        .team-member p { color: var(--gray); font-weight: 500; }
 
         .member-social {
             display: flex;
@@ -563,66 +456,13 @@
             box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
         }
 
-        /* 联系我们 */
-        .contact {
-            padding: 8rem 0;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-form::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-        }
-
-        /* 页脚 */
+        /* --- 页脚 --- */
         .footer {
             background: var(--dark);
             color: white;
             padding: 4rem 0 2rem;
+            /* 确保页脚可以作为联系锚点 */
+            scroll-margin-top: 80px;
         }
 
         .footer-content {
@@ -649,13 +489,8 @@
             background: linear-gradient(90deg, var(--primary), var(--accent));
         }
 
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
 
         .footer-links a {
             color: rgba(255, 255, 255, 0.7);
@@ -666,18 +501,8 @@
             gap: 0.5rem;
         }
 
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .footer-links a i {
-            font-size: 0.8rem;
-            transition: transform 0.3s ease;
-        }
-
-        .footer-links a:hover i {
-            transform: translateX(5px);
-        }
+        .footer-links a:hover { color: white; }
+        .footer-links a:hover i { transform: translateX(5px); }
 
         .social-links {
             display: flex;
@@ -700,28 +525,10 @@
             overflow: hidden;
         }
 
-        .social-links a::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.4));
-            transform: rotate(45deg);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
         .social-links a:hover {
             transform: translateY(-5px) scale(1.1);
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-        }
-
-        .social-links a:hover::before {
-            opacity: 1;
-            animation: shine 3s infinite;
         }
 
         .copyright {
@@ -732,23 +539,18 @@
             font-size: 0.9rem;
         }
 
-        /* 响应式设计 */
+        /* --- 响应式设计 --- */
         @media (max-width: 768px) {
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* 简化处理，移动端隐藏菜单 */
+            .solution-tabs { flex-direction: column; }
         }
 
-        /* 滚动动画 */
+        /* --- 动画工具类 --- */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -760,7 +562,6 @@
             transform: translateY(0);
         }
 
-        /* 添加波纹效果 */
         .ripple {
             position: absolute;
             border-radius: 50%;
@@ -771,15 +572,11 @@
         }
 
         @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
+            to { transform: scale(4); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="container nav-container">
             <div class="logo">
@@ -789,23 +586,21 @@
                 <div class="logo-text">SenseHiso AI</div>
             </div>
             <ul class="nav-links">
-                <li><a href="#home">首页</a></li>
-                <li><a href="#about">关于我们</a></li>
-                <li><a href="#solutions">解决方案</a></li>
-                <li><a href="#team">团队</a></li>
-                <li><a href="#contact">联系我们</a></li>
+                <li><a href="#home"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> 关于我们</a></li>
+                <li><a href="#solutions"><i class="fas fa-layer-group"></i> 解决方案</a></li>
+                <li><a href="#team"><i class="fas fa-users"></i> 团队</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- 英雄区域 -->
     <section id="home" class="hero">
         <div class="container hero-content">
             <div class="hero-text">
                 <h1>人工智能前沿技术解决方案</h1>
                 <p>我们专注于开发最先进的AI技术，为企业提供智能化、自动化的解决方案，推动数字化转型和创新。</p>
-                <a href="#contact" class="btn">
-                    <span class="btn-icon"><i class="fas fa-rocket"></i></span>
+                <a href="#footer-contact" class="btn">
+                    <span class="btn-icon"><i class="fas fa-handshake"></i></span>
                     开始合作
                 </a>
             </div>
@@ -822,8 +617,7 @@
         </div>
     </section>
 
-    <!-- 关于我们 -->
-    <section id="about" class="about">
+    <section id="about" class="about section-padding">
         <div class="container">
             <div class="section-title">
                 <h2>关于我们</h2>
@@ -846,7 +640,7 @@
                 </div>
                 <div class="feature-card animate-on-scroll">
                     <div class="feature-icon">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-users-cog"></i>
                     </div>
                     <h3>专业团队</h3>
                     <p>由顶尖AI专家、数据科学家和工程师组成的团队，拥有丰富的行业经验。</p>
@@ -855,55 +649,59 @@
         </div>
     </section>
 
-    <!-- 解决方案 -->
-    <section id="solutions" class="solutions">
+    <section id="solutions" class="solutions section-padding">
         <div class="container">
             <div class="section-title">
                 <h2>核心解决方案</h2>
                 <p>我们提供全方位的AI技术解决方案，助力企业数字化转型</p>
             </div>
             <div class="solution-tabs">
-                <button class="tab-btn active" data-tab="computer-vision">计算机视觉</button>
-                <button class="tab-btn" data-tab="nlp">自然语言处理</button>
-                <button class="tab-btn" data-tab="predictive">预测分析</button>
+                <button class="tab-btn active" data-tab="computer-vision">
+                    <i class="fas fa-eye"></i> 计算机视觉
+                </button>
+                <button class="tab-btn" data-tab="nlp">
+                    <i class="fas fa-comments"></i> 自然语言处理
+                </button>
+                <button class="tab-btn" data-tab="predictive">
+                    <i class="fas fa-chart-pie"></i> 预测分析
+                </button>
             </div>
-            <div class="solution-content">
+            <div class="solution-content animate-on-scroll">
                 <div class="solution-item active" id="computer-vision">
-                    <h3>计算机视觉解决方案</h3>
+                    <h3><i class="fas fa-camera text-primary"></i> 计算机视觉解决方案</h3>
                     <p>利用深度学习和计算机视觉技术，提供图像识别、目标检测、视频分析等服务，帮助企业实现智能化监控、质量检测和自动化流程。</p>
-                    <ul style="margin-top: 1rem; color: var(--gray);">
-                        <li>• 智能安防监控</li>
-                        <li>• 工业质量检测</li>
-                        <li>• 医疗影像分析</li>
-                        <li>• 自动驾驶感知系统</li>
+                    <ul style="margin-top: 1rem; color: var(--gray); list-style: none;">
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 智能安防监控</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 工业质量检测</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 医疗影像分析</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 自动驾驶感知系统</li>
                     </ul>
                 </div>
                 <div class="solution-item" id="nlp">
-                    <h3>自然语言处理解决方案</h3>
+                    <h3><i class="fas fa-language text-primary"></i> 自然语言处理解决方案</h3>
                     <p>基于先进的NLP技术，提供文本分析、情感分析、智能客服、内容生成等服务，提升用户体验和运营效率。</p>
-                    <ul style="margin-top: 1rem; color: var(--gray);">
-                        <li>• 智能客服系统</li>
-                        <li>• 文本情感分析</li>
-                        <li>• 自动化内容生成</li>
-                        <li>• 多语言翻译服务</li>
+                    <ul style="margin-top: 1rem; color: var(--gray); list-style: none;">
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 智能客服系统</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 文本情感分析</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 自动化内容生成</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 多语言翻译服务</li>
                     </ul>
                 </div>
                 <div class="solution-item" id="predictive">
-                    <h3>预测分析解决方案</h3>
+                    <h3><i class="fas fa-chart-bar text-primary"></i> 预测分析解决方案</h3>
                     <p>结合机器学习和大数据分析，提供精准的业务预测、风险评估、市场分析等服务，帮助企业做出数据驱动的决策。</p>
-                    <ul style="margin-top: 1rem; color: var(--gray);">
-                        <li>• 销售预测分析</li>
-                        <li>• 风险评估模型</li>
-                        <li>• 客户行为分析</li>
-                        <li>• 智能供应链优化</li>
+                    <ul style="margin-top: 1rem; color: var(--gray); list-style: none;">
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 销售预测分析</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 风险评估模型</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 客户行为分析</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--primary); margin-right:8px"></i> 智能供应链优化</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 团队 -->
-    <section id="team" class="team">
+    <section id="team" class="team section-padding">
         <div class="container">
             <div class="section-title">
                 <h2>核心团队</h2>
@@ -912,93 +710,60 @@
             <div class="team-grid">
                 <div class="team-member animate-on-scroll">
                     <div class="member-avatar">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-user-graduate"></i>
                     </div>
                     <h3>张博士</h3>
                     <p>首席AI科学家</p>
                     <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <div class="team-member animate-on-scroll">
                     <div class="member-avatar">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-user-tie"></i>
                     </div>
                     <h3>李教授</h3>
                     <p>深度学习专家</p>
                     <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
                 <div class="team-member animate-on-scroll">
                     <div class="member-avatar">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3>张总监</h3>
                     <p>系统应用架构师</p>
                     <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-stack-overflow"></i></a>
                     </div>
                 </div>
                 <div class="team-member animate-on-scroll">
                     <div class="member-avatar">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-user-astronaut"></i>
                     </div>
                     <h3>陈博士</h3>
                     <p>自然语言处理专家</p>
                     <div class="member-social">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-medium"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 联系我们 -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>联系我们</h2>
-                <p>无论您有任何问题或需求，我们都期待与您沟通</p>
-            </div>
-            <div class="contact-form">
-                <div class="form-group">
-                    <label for="name">姓名</label>
-                    <input type="text" id="name" placeholder="请输入您的姓名">
-                </div>
-                <div class="form-group">
-                    <label for="email">邮箱</label>
-                    <input type="email" id="email" placeholder="请输入您的邮箱">
-                </div>
-                <div class="form-group">
-                    <label for="message">留言</label>
-                    <textarea id="message" rows="5" placeholder="请输入您的留言内容"></textarea>
-                </div>
-                <button type="submit" class="btn">
-                    <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
-                    发送消息
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class="footer">
+    <footer class="footer" id="footer-contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>SenseHiso AI</h3>
                     <p>专注于人工智能前沿技术解决方案，为企业提供智能化、自动化的技术支持。</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
                         <a href="#"><i class="fab fa-weixin"></i></a>
@@ -1007,19 +772,18 @@
                 <div class="footer-column">
                     <h3>快速链接</h3>
                     <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> 首页</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
-                        <li><a href="#solutions"><i class="fas fa-chevron-right"></i> 解决方案</a></li>
-                        <li><a href="#team"><i class="fas fa-chevron-right"></i> 团队</a></li>
-                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
+                        <li><a href="#home"><i class="fas fa-angle-right"></i> 首页</a></li>
+                        <li><a href="#about"><i class="fas fa-angle-right"></i> 关于我们</a></li>
+                        <li><a href="#solutions"><i class="fas fa-angle-right"></i> 解决方案</a></li>
+                        <li><a href="#team"><i class="fas fa-angle-right"></i> 团队</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>联系方式</h3>
                     <ul class="footer-links">
                         <li><a href="#"><i class="fas fa-map-marker-alt"></i> 福建省厦门市思明区软件园二期</a></li>
-                        <li><a href="#"><i class="fas fa-phone"></i> +86 150 **** 0496</a></li>
-                        <li><a href="#"><i class="fas fa-envelope"></i> contact@sensehiso.com</a></li>
+                        <li><a href="#"><i class="fas fa-phone-alt"></i> +86 150 **** 0496</a></li>
+                        <li><a href="mailto:contact@sensehiso.com"><i class="fas fa-envelope"></i> contact@sensehiso.com</a></li>
                     </ul>
                 </div>
             </div>
@@ -1057,35 +821,22 @@
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
                 if (target) {
+                    // 考虑到固定导航栏的高度
+                    const offsetTop = target.offsetTop - 80;
+                    
                     window.scrollTo({
-                        top: target.offsetTop - 80,
+                        top: offsetTop,
                         behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // 联系表单提交
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            if (!name || !email || !message) {
-                alert('请填写完整信息');
-                return;
-            }
-            
-            // 这里可以添加实际的表单提交逻辑
-            alert('感谢您的留言！我们会尽快与您联系。');
-            this.reset();
-        });
-
-        // 滚动动画
+        // 滚动动画 Intersection Observer
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
